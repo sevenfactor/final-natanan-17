@@ -114,7 +114,7 @@
 - **3 คะแนน** - Validate Input (ตรวจสอบ id parameter และเจ้าของ record)
 - **2 คะแนน** - Authentication (ต้องตรวจสอบ token)
 
-#### Doctor Notes (60 คะแนน)
+#### Doctor Notes (60 คะแนน) Bonus
 
 **14. POST /doctor-notes (10 คะแนน)**
 
