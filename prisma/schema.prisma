@@ -9,5 +9,51 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
+}
+
+ model Doctor {
+  id             Int          @id @default(autoincrement())
+  username       String       @unique
+  password       String
+  specialization String
+
+  doctorNotes    DoctorNote[]
+
+  createdAt      DateTime     @default(now())
+}
+
+model User {
+  id            Int            @id @default(autoincrement())
+  username      String         @unique
+  password      String
+
+  doctorNotes   DoctorNote[]
+  healthRecords HealthRecord[]
+
+  createdAt     DateTime       @default(now())
+}
+
+model DoctorNote {
+  id        Int      @id @default(autoincrement())
+
+  doctorId  Int
+  userId    Int
+
+  note      String
+  createdAt DateTime @default(now())
+
+  doctor    Doctor   @relation(fields: [doctorId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
+}
+
+model HealthRecord {
+  id      Int      @id @default(autoincrement())
+
+  userId  Int
+  type    String
+  value   String
+  date    DateTime
+
+  user    User     @relation(fields: [userId], references: [id])
 }
